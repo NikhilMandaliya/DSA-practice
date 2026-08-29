@@ -112,4 +112,15 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
+
+  log() {
+    if (!this.length) return console.log('null');
+    let curr = this.head;
+    let result = [];
+    while (curr !== null) {
+      result.push(curr.val);
+      curr = curr.next;
+    }
+    console.log(result.join(' -> ') + ' -> null');
+  }
 }
