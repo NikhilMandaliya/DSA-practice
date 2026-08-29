@@ -113,6 +113,21 @@ class SinglyLinkedList {
     return removed;
   }
 
+  reverse() {
+    let curr = this.head;
+    this.head = this.tail;
+    this.tail = curr;
+
+    let prev = null;
+    let next = null;
+    for (let i = 0; i < this.length; i++) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+  }
+
   log() {
     if (!this.length)
       return console.log('length:', this.length, 'values:', 'null');
