@@ -128,6 +128,33 @@ class SinglyLinkedList {
     }
   }
 
+  rotate(k) {
+    // Handle edge cases for empty list, single node, or no rotation
+    if (!this.head || !this.head.next || k === 0) return this;
+
+    // Connect tail to head to form a circular loop
+    this.tail.next = this.head;
+
+    // Handle steps > length
+    k = k % this.length;
+
+    // Find the new tail position
+    const stepsToNewTail = k < 0 ? this.length + k : k;
+    let newTail = this.tail;
+    for (let i = 0; i < stepsToNewTail; i++) {
+      newTail = newTail.next;
+    }
+
+    // Set the new head and tail
+    this.tail = newTail;
+    this.head = this.tail.next;
+
+    // Break the circular link
+    this.tail.next = null;
+
+    return this;
+  }
+
   log() {
     if (!this.length)
       return console.log('length:', this.length, 'values:', 'null');
