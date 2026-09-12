@@ -72,6 +72,30 @@ class DoublyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index < this.length / 2) {
+      let value = this.head;
+      for (let i = 0; i < index; i++) {
+        value = value.next;
+      }
+      return value;
+    } else {
+      let value = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        value = value.prev;
+      }
+      return value;
+    }
+  }
+
+  set(index, val) {
+    const node = this.get(index);
+    if (!node) return false;
+    node.val = val;
+    return true;
+  }
+
   log() {
     if (!this.length)
       return console.log('length:', this.length, 'values:', 'null');
